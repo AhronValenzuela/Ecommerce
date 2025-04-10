@@ -1,0 +1,386 @@
+  <!DOCTYPE html> 
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Pinkpop Shop</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Pacifico&display=swap" rel="stylesheet">
+    <style>
+      body {
+        margin: 0;
+        font-family: 'Fredoka', sans-serif;
+        background: linear-gradient(to bottom, #ffd1dc, #ffe5ec);
+        color: #333;
+      }
+      header {
+        background-color: #fff0f5;
+        padding: 15px 40px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      }
+      header .logo {
+        font-size: 24px;
+        font-weight: 600;
+        color: #d63384;
+      }
+      header nav {
+        display: flex;
+        gap: 30px;
+      }
+      header nav a {
+        text-decoration: none;
+        color: #d63384;
+        font-weight: 600;
+        font-size: 25px;
+      }
+      header nav a:hover {
+        color: #ff69b4;
+        text-decoration: underline;
+      }
+    
+      /* Burger Menu Styles */
+      .burger-menu {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        cursor: pointer;
+      }
+      .burger-menu div {
+        width: 25px;
+        height: 3px;
+        background-color: #d63384;
+        border-radius: 5px;
+      }
+    
+      /* Hide the nav links on small screens */
+      header nav {
+        display: flex;
+        text-shadow: 0 1px 2px rgba(255, 255, 255, 0.7), 0 0 5px #ff66b3, 0 0 10px #ff66b3; /* Glossy text effect */
+      }
+    
+      /* Responsive styles for burger menu */
+      @media (max-width: 768px) {
+        header nav {
+          display: none;
+          width: 100%;
+          flex-direction: column;
+          align-items: center;
+          gap: 15px;
+
+        }
+        header nav.active {
+          display: flex;
+        }
+        .burger-menu {
+          display: flex;
+        }
+      }
+    
+      .top-banner {
+        background-color: #ffe5ec;
+        text-align: center;
+        padding: 10px;
+        font-size: 14px;
+        color: #c2185b;
+      }
+      .products {
+        text-align: center;
+        padding: 40px 20px;
+      }
+      .products h2 {
+        font-size: 32px;
+        color: #c71585;
+        text-shadow: 1px 1px #fff;
+        text-shadow: 0 1px 2px rgba(255, 255, 255, 0.7), 0 0 5px #ff66b3, 0 0 10px #ff66b3; /* Glossy text effect */
+      }
+      .product-grid {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        flex-wrap: wrap;
+        margin-top: 30px;
+      }
+      .product-card {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 15px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease-in-out, background-color 0.3s ease-in-out;
+        flex: 1 1 30%;
+        box-sizing: border-box;
+        text-align: center;
+      }
+      .product-card:hover {
+        transform: scale(1.05);
+        background-color: #f8e1f4; /* Light pink background color on hover */
+      }
+      .product-card img {
+        width: 100%;
+        height: 250px;
+        object-fit: contain;
+        border-radius: 15px;
+      }
+      .product-card h3 {
+        font-size: 18px;
+        color: #d63384;
+        margin: 10px 0;
+      }
+      .product-card p {
+        font-size: 16px;
+        color: #333;
+      }
+      .buttons button {
+        padding: 8px 20px;
+        border: none;
+        background-color: #ff69b4;
+        color: white;
+        border-radius: 30px;
+        cursor: pointer;
+        transition: background 0.3s ease-in-out;
+      }
+      .buttons button:hover {
+        background-color: #e75480;
+      }
+      .modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal {
+  background-color: #fff;
+  padding: 30px;
+  border-radius: 20px;
+  max-width: 400px;
+  width: 90%;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.modal img {
+  width: 100%;
+  max-height: 200px;
+  object-fit: contain;
+  border-radius: 10px;
+  margin-bottom: 15px;
+}
+
+.modal h3 {
+  font-size: 22px;
+  color: #d63384;
+  margin: 10px 0;
+}
+
+.modal p {
+  font-size: 16px;
+  color: #555;
+  margin: 8px 0;
+}
+
+.close-btn {
+  margin-top: 20px;
+  padding: 8px 20px;
+  background-color: #d63384;
+  color: white;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.close-btn:hover {
+  background-color: #ff69b4;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  } to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+
+    </style>
+    
+  </head>
+  <body>
+    
+    <header>
+      <!-- Logo on the left -->
+      <div class="logo">
+        <img src="Allphoto/LOGOO.png" alt="Logo" height="40">
+      </div>
+
+      <!-- Burger Menu Icon -->
+      <div class="burger-menu" id="burgerMenu">
+        <div></div>
+        <div></div>
+        <div></div>
+      </div>
+
+      <!-- Navigation on the right -->
+      <nav id="nav-links" class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="shop.html">Shop</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
+      </nav>
+    </header>
+
+    <section class="products">
+      <h2>Shop Our Refreshing Sodas</h2>
+      <div class="product-grid">
+        <!-- Product 1 -->
+        <div class="product-card">
+          <img src="Allphoto/Crush Soda.png" alt="Crush Soda"/>
+          <h3>Crush Soda</h3>
+          <p>₱60</p>
+          <div class="buttons">
+            <button class="view-btn" onclick="showModal('Crush Soda', 'Allphoto/Crush Soda.png', '₱60', 'A refreshing crush soda with a sweet pop!')">View</button>
+            <button class="cart-btn">Add to Cart</button>
+          </div>
+        </div>
+        <!-- Product 2 -->
+        <div class="product-card">
+          <img src="Allphoto/London Essence.png" alt="London Essence"/>
+          <h3>London Essence</h3>
+          <p>₱50</p>
+          <div class="buttons">
+            <button class="view-btn" onclick="showModal('London Essence', 'Allphoto/London Essence.png', '₱50', 'A London Essence soda with a fizzy kick!')">View</button>
+            <button class="cart-btn">Add to Cart</button>
+          </div>
+        </div>
+        <!-- Product 3 -->
+        <div class="product-card">
+          <img src="Allphoto/Fanta Soda.png" alt="Fanta Soda"/>
+          <h3>Fanta Soda</h3>
+          <p>₱50</p>
+          <div class="buttons">
+            <button class="view-btn" onclick="showModal('Fanta Soda', 'Allphoto/Fanta Soda.png', '₱50', 'The classic Fanta Soda you know and love.')">View</button>
+            <button class="cart-btn">Add to Cart</button>
+          </div>
+        </div>
+        <!-- Product 4 -->
+        <div class="product-card">
+          <img src="Allphoto/Kirks.png" alt="Kirks"/>
+          <h3>Kirks</h3>
+          <p>₱60</p>
+          <div class="buttons">
+            <button class="view-btn" onclick="showModal('Kirks', 'Allphoto/Kirks.png', '₱60', 'A sweet Kirks with a refreshing zing!')">View</button>
+            <button class="cart-btn">Add to Cart</button>
+          </div>
+        </div>
+        <!-- Product 5 -->
+        <div class="product-card">
+          <img src="Allphoto/Culture Pop.png" alt="Culture Pop"/>
+          <h3>Culture Pop</h3>
+          <p>₱50</p>
+          <div class="buttons">
+            <button class="view-btn" onclick="showModal('Culture Pop', 'Allphoto/Culture Pop.png', '₱50', 'A sparkling Culture Pop bursting with flavor!')">View</button>
+            <button class="cart-btn">Add to Cart</button>
+          </div>
+        </div>
+        <!-- Product 6 -->
+        <div class="product-card">
+          <img src="Allphoto/Poppi.png" alt="Poppi"/>
+          <h3>Poppi</h3>
+          <p>₱60</p>
+          <div class="buttons">
+            <button class="view-btn" onclick="showModal('Poppi', 'Allphoto/Poppi.png', '₱60', 'A Poppi soda with a splash of citrus!')">View</button>
+            <button class="cart-btn">Add to Cart</button>
+          </div>
+        </div>
+        <!-- Product 7 -->
+        <div class="product-card">
+          <img src="Allphoto/Pink Lemonade.png" alt="Pink Lemonade.png"/>
+          <h3>Pink Lemonade</h3>
+          <p>₱50</p>
+          <div class="buttons">
+            <button class="view-btn" onclick="showModal('Pink Lemonade', 'Allphoto/Pink Lemonade.png', '₱50', 'A Pink Lemonade soda with a sweet blend of flavors!')">View</button>
+            <button class="cart-btn">Add to Cart</button>
+          </div>
+        </div>
+        <!-- Product 8 -->
+        <div class="product-card">
+          <img src="Allphoto/Swoon Pink Lemonade.png" alt="Swoon Pink Lemonade"/>
+          <h3>Swoon Pink Lemonade</h3>
+          <p>₱60</p>
+          <div class="buttons">
+            <button class="view-btn" onclick="showModal('Swoon Pink Lemonade', 'Allphoto/Swoon Pink Lemonade.png', '₱60', 'A Swoon Pink Lemonade soda with a sweet twist!')">View</button>
+            <button class="cart-btn">Add to Cart</button>
+          </div>
+        </div>
+        <!-- Product 9 -->
+        <div class="product-card">
+          <img src="Allphoto/Pink Slush.png" alt="Pink Slush"/>
+          <h3>Pink Slush</h3>
+          <p>₱50</p>
+          <div class="buttons">
+            <button class="view-btn" onclick="showModal('Pink Slush', 'Allphoto/Pink Slush.png', '₱50', 'A refreshing Pink Slush finish!')">View</button>
+            <button class="cart-btn">Add to Cart</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div id="productModal" class="modal-overlay" style="display: none;">
+      <div class="modal">
+        <img id="modalImg" src="" alt="Product Image"/>
+        <h3 id="modalTitle"></h3>
+        <p id="modalPrice"></p>
+        <p id="modalDescription"></p>
+        <button class="close-btn" onclick="closeModal()">Close</button>
+      </div>
+    </div>
+  
+    <script>
+      // Burger Menu Toggle
+      document.getElementById('burgerMenu').addEventListener('click', () => {
+        document.getElementById('nav-links').classList.toggle('active');
+      });
+  
+      // Show Modal
+      function showModal(title, imgSrc, price, description) {
+        document.getElementById('modalTitle').innerText = title;
+        document.getElementById('modalImg').src = imgSrc;
+        document.getElementById('modalPrice').innerText = price;
+        document.getElementById('modalDescription').innerText = description;
+        document.getElementById('productModal').style.display = 'flex';
+      }
+  
+      // Close Modal
+      function closeModal() {
+        document.getElementById('productModal').style.display = 'none';
+      }
+  
+      // Close if clicking outside the modal box
+      document.getElementById('productModal').addEventListener('click', function(e) {
+        if (e.target === this) closeModal();
+      });
+  
+      // Add to Cart Message
+      const cartButtons = document.querySelectorAll('.cart-btn');
+      cartButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          const productCard = button.closest('.product-card');
+          const productName = productCard.querySelector('h3').innerText;
+          alert(productName + ' has been added to your cart!');
+        });
+      });
+    </script>
+  
+  </body>
+  </html>

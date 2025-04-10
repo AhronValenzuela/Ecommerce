@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Soda Shop - About</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Pacifico&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Fredoka', sans-serif;
+      background: linear-gradient(to bottom, #ffd1dc, #ffe5ec);
+      color: #333;
+    }
+    header {
+      background-color: #fff0f5;
+      padding: 15px 40px;
+      display: flex;
+      justify-content: space-between; /* To position logo on the left and nav on the right */
+      align-items: center;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+      position: relative;
+
+    }
+    header .logo {
+      font-size: 24px;
+      font-weight: 600;
+      color: #d63384;
+      margin-right: auto;
+    }
+    header .logo img {
+      height: 40px; 
+    }
+    header nav {
+      display: flex;
+      gap: 30px;
+      justify-content: center;
+      text-shadow: 0 1px 2px rgba(255, 255, 255, 0.7), 0 0 5px #ff66b3, 0 0 10px #ff66b3; /* Glossy text effect */
+    }
+    header nav a {
+      text-decoration: none;
+      color: #d63384;
+      font-weight: 600;
+      font-size: 25px;
+      position: relative;
+      padding: 5px 0;
+    }
+    header nav a:hover {
+      color: #ff69b4; /* Change color on hover */
+      text-decoration: underline; /* Add underline effect */
+    }
+
+    /* Burger Menu Styles */
+    .burger-menu {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+    }
+    .burger-menu div {
+      width: 25px;
+      height: 3px;
+      background-color: #d63384;
+      border-radius: 5px;
+    }
+
+    /* Hide the nav links on small screens */
+    header nav {
+      display: flex;
+    }
+
+    /* Responsive styles for burger menu */
+    @media (max-width: 768px) {
+      header nav {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+      }
+      header nav.active {
+        display: flex;
+      }
+      .burger-menu {
+        display: flex;
+      }
+    }
+
+    .top-banner {
+      background-color: #ffe5ec;
+      text-align: center;
+      padding: 10px;
+      font-size: 14px;
+      color: #c2185b;
+    }
+
+    /* About Section Styles */
+    .about {
+      text-align: center;
+      padding: 30px 20px;  /* Further reduced padding at the top */
+      background: linear-gradient(to bottom, #ffd1dc, #ffbbe8);
+      border-radius: 15px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      margin: 10px 20px;  /* Reduced bottom margin to bring the section up further */
+      
+    }
+    .about h2 {
+      font-size: 48px;
+      color: #c71585;
+      font-family: 'Pacifico', cursive;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+      margin-bottom: 30px;
+      text-shadow: 0 1px 2px rgba(255, 255, 255, 0.7), 0 0 5px #ff66b3, 0 0 10px #ff66b3; /* Glossy text effect */
+    }
+    .about p {
+      font-size: 20px;
+      color: #333;
+      margin: 15px 0;
+      line-height: 1.6;
+      font-family: 'Fredoka', sans-serif;
+    }
+    .about p:last-child {
+      font-weight: 600;
+      color: #d63384;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <!-- Logo on the left -->
+    <div class="logo">
+      <img src="Allphoto/LOGOO.png" alt="Logo" height="40">
+    </div>
+
+    <!-- Burger Menu Icon -->
+    <div class="burger-menu" id="burgerMenu">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+
+    <!-- Navigation on the right -->
+    <nav id="nav-links" class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="shop.html">Shop</a>
+      <a href="about.html">About</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <section class="about">
+    <h2>About Us</h2>
+    <p>Welcome to Pink Pop, your one-stop destination for refreshing, pop drinks!</p>
+    <p>At Pinkpop, we believe that every sip should be a celebration! Inspired by the sweetness of life and the color that brings joy, our pink sodas are crafted to delight your taste buds and brighten your day.</p>
+    <p>Each bottle is bursting with refreshing flavors, vibrant fizz, and a touch of fun — perfect for sharing moments, making memories, or simply treating yourself. Whether you're into fruity classics or adventurous blends, Pinkpop is your go-to drink for good vibes and great taste. Because life’s better in pink!</p>
+    <p>Our mission is to refresh your world with every pop of flavor. We’re here to bring you drinks that don’t just taste good — they feel good. From the first fizz to the last drop, Pinkpop is all about uplifting your mood, cooling you down, and adding a splash of happiness to everyday life. 💖✨</p>
+  </section>
+
+  <script>
+    // JavaScript to toggle burger menu visibility
+    const burgerMenu = document.getElementById('burgerMenu');
+    const navLinks = document.getElementById('nav-links');
+
+    burgerMenu.addEventListener('click', () => {
+      navLinks.classList.toggle('active');
+    });
+  </script>
+</body>
+</html>
